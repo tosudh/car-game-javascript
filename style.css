@@ -1,0 +1,95 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  max-height: 100vh;
+}
+.main {
+  font-size: 2rem;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.roadSide {
+  background-color: rgb(49, 138, 49);
+  position: relative;
+  flex-grow: 01;
+}
+
+.grassEdge {
+  margin: 0 2em;
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  top: 0;
+  background-image: url("./img/grass.png");
+  background-repeat: repeat-y;
+  background-size: 40px;
+}
+
+.left .grassEdge {
+  right: 0;
+}
+.right .grassEdge {
+  left: 0;
+}
+.game {
+  width: 30%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #000;
+}
+.startScreen {
+  border-radius: 8px;
+  background-color: rgb(161, 54, 54);
+  color: #fff;
+  width: fit-content;
+  padding: 0.2em 0.3em;
+  margin: 1em 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.game {
+  /*  */
+  min-width: 400px;
+}
+.gameArea{
+  width: 100%;
+  height: 100%;
+}
+
+.hide {
+  display: none;
+}
+
+.car {
+  width: 80px;
+  position: absolute;
+  z-index: 10;
+}
+.player {
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -150%);
+}
+.computer {
+  /* width: 80px; */
+}
+
+.line{
+  position:absolute;
+  width: 20px;
+  height: 80px;
+  display: block;
+  background-color:#fff;
+  left: calc(50% - 10px);;
+  border-radius: 2px;
+}
