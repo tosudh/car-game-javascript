@@ -1,4 +1,5 @@
 const score = document.querySelector(".score");
+const liveScore = document.querySelector(".liveScore");
 const startScreen = document.querySelector(".startScreen");
 const gameArea = document.querySelector(".gameArea");
 let lines;
@@ -20,8 +21,10 @@ document.addEventListener("keyup", pressOff);
 
 function start() {
   playerData.start=true;
+  playerData.score=0;
   lines = document.getElementsByClassName("line");
   startScreen.classList.add("hide");
+  liveScore.classList.remove("hide");
   score.classList.add("hide");
   gameArea.classList.remove("hide");
   gameArea.innerHTML=''
@@ -59,7 +62,7 @@ function playGame() {
     
     moveRoadLines(road);
     manageEnemy(road, playerCar);
-    playerData.score++;  
+    updateScore()
     if (keys["ArrowLeft"] && playerData.x > 45) {
       playerData.x -= playerData.speed;
     }
@@ -127,6 +130,11 @@ function endGame() {
   playerData.start = false;
   startScreen.classList.remove("hide");
   score.classList.remove("hide");
-  // gameArea.classList.add("hide");
+  liveScore.classList.add("hide");
   score.innerHTML = "Game Over <br> Score was "+playerData.score
+}
+
+function updateScore(){
+  playerData.score++;
+  liveScore.textContent = playerData.score;
 }

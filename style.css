@@ -70,7 +70,7 @@ body {
 }
 
 .hide {
-  display: none;
+  display: none!important;
 }
 
 .car {
@@ -112,4 +112,17 @@ body {
   transform: translateX(-50%);
   z-index: 10;
   text-align: center;
+}
+.liveScore{
+  position: fixed;
+  display: inline-block;
+  width:fit-content;
+  text-align: center;
+  bottom: 5%;
+  right: 5%;
+  color: #fff;
+  background-color: rgb(175, 0, 0);
+  border:5px solid rgb(27, 199, 185);
+  padding:0.5em;
+  border-radius:8px;
 }
