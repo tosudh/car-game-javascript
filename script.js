@@ -2,7 +2,7 @@ const score = document.querySelector(".score");
 const startScreen = document.querySelector(".startScreen");
 const gameArea = document.querySelector(".gameArea");
 let lines;
-
+let allEnemies;
 let keys = {
   ArrowUp: false,
   ArrowDown: false,
@@ -16,7 +16,7 @@ let playerData = {
 startScreen.addEventListener("click", start);
 document.addEventListener("keydown", pressOn);
 document.addEventListener("keyup", pressOff);
-// start();
+start();
 
 function start() {
   console.log("click");
@@ -34,8 +34,8 @@ function start() {
   car.src = "./img/player_car.svg";
   car.classList.add("car");
   car.classList.add("player");
-  car.innerText = "Car";
   gameArea.appendChild(car);
+  makeEnemyCar(gameArea,3);
   playerData.x = car.offsetLeft;
   playerData.y = car.offsetTop;
   window.requestAnimationFrame(playGame);
@@ -52,13 +52,11 @@ function pressOff(e) {
 function playGame() {
   let playerCar = document.querySelector(".player");
   let road = gameArea.getBoundingClientRect();
+
+  moveRoadLines(road);
+  manageEnemy(road)
   
-  for (let line of lines) {
-    if (line.offsetTop >= road.height) {
-      line.style.top='-20px';
-    }
-    line.style.top =playerData.speed+line.offsetTop + "px";
-  }
+
   if (playerData.start) {
     if (keys["ArrowLeft"] && playerData.x > 45) {
       playerData.x -= playerData.speed;
@@ -75,5 +73,41 @@ function playGame() {
     playerCar.style.left = playerData.x + "px";
     playerCar.style.top = playerData.y + "px";
     window.requestAnimationFrame(playGame);
+  }
+}
+function makeEnemyCar(target,n){
+  for (var i = 0; i <n;i++){
+    let enemyCar = document.createElement('img');
+    enemyCar.src = "./img/computer_car.svg";
+    enemyCar.classList.add("car");
+    enemyCar.style.left = Math.floor(Math.random()*250)+50 +"px";
+    enemyCar.style.top = -850*i +"px";
+    console.log(enemyCar.style.left)
+    enemyCar.classList.add("computer");
+    target.appendChild(enemyCar) ;
+  }
+  allEnemies = document.querySelectorAll('.computer')
+}
+function manageEnemy(road){
+  allEnemies.forEach((enemy)=>{
+    if(enemy.offsetTop>road.height+500){
+      enemy.style.top =-1150+playerData.speed+"px"
+      console.log(enemy.style.top)
+      enemy.style.left = Math.floor(Math.random()*250)+50 +"px";
+    }
+    else{
+      enemy.style.top = enemy.offsetTop+playerData.speed+"px"
+
+    }
+
+  }) 
+
+}
+function moveRoadLines(road){
+  for (let line of lines) {
+    if (line.offsetTop >= road.height) {
+      line.style.top='-20px';
+    }
+    line.style.top =playerData.speed+line.offsetTop + "px";
   }
 }
