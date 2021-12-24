@@ -55,7 +55,9 @@ body {
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;
+  z-index: 10;
 }
+
 
 .game {
   /*  */
@@ -96,4 +98,18 @@ body {
   background-color:#fff;
   left: calc(50% - 10px);;
   border-radius: 2px;
+}
+.score {
+  border-radius: 5px;
+  background-color: rgb(175, 0, 0);
+  border:5px solid rgb(27, 199, 185);
+  color: #fff;
+  width: fit-content;
+  padding: 0.2em 0.3em;
+  position: absolute;
+  left: 50%;
+  bottom: 20%;
+  transform: translateX(-50%);
+  z-index: 10;
+  text-align: center;
 }
