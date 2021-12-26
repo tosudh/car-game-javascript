@@ -22,6 +22,10 @@ document.addEventListener("keyup", pressOff);
 function start() {
   playerData.start=true;
   playerData.score=0;
+  playerData.speed=5;
+  // setInterval(()=>{
+  //   playerData.speed++;
+  // },3000)
   lines = document.getElementsByClassName("line");
   startScreen.classList.add("hide");
   liveScore.classList.remove("hide");
@@ -71,9 +75,12 @@ function playGame() {
     }
     if (keys["ArrowUp"] && playerData.y > playerCar.height + 100) {
       playerData.y -= playerData.speed;
+      playerData.speed++;
+      
     }
     if (keys["ArrowDown"] && playerData.y < road.height + 80) {
       playerData.y += playerData.speed;
+      playerData.speed>5&&playerData.speed--;
     }
     playerCar.style.left = playerData.x + "px";
     playerCar.style.top = playerData.y + "px";
